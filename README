@@ -1,5 +1,5 @@
 This is an implementation of the Hierarchical Temporal Memory architecture
 as described in
-http://www.numenta.com/htm-overview/education/HTM_CorticalLearningAlgorithms.pdf
+http://numenta.com/assets/pdf/whitepapers/hierarchical-temporal-memory-cortical-learning-algorithm-0.2.1-en.pdf
 
-Currently, this is in Python, and probably doesn't work (2010-12-30).
+New development is being using Racket.
