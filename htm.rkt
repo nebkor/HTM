@@ -88,12 +88,26 @@
 ;;  else
 ;;   overlap(c) = overlap(c) * boost(c)
 
-(define (get-spatial-overlap columns connected-synapses input boost t)
+(struct column (potential-synapses
+                connected-synapses
+                cells
+                boost
+                active-duty-cycle
+                overlap-duty-cycle
+                min-duty-cycle) :#mutable)
+
+(struct synapse (permanence source-input) :#mutable)
+
+(define (get-spatial-overlap columns input boost t)
   (for/list ([c columns])
-    (let ([ol (get-connected-synapse-input connected-synapses input c)])
+    (let* ([connected-synapses (column-connected-synapses c)]
+           [ol (get-connected-synapse-input connected-synapses input c)]
+           [boost (column-boost c)])
       (if (< ol *min-overlap*)
           0
-          (* (hash-ref boost c) ol)))))
+          (* boost ol)))))
+
+
 
 ;; Phase 2: inhibition
 ;; The second phase calculates which columns remain as winners after the inhibition
